@@ -15,10 +15,12 @@ import { TbBrandCSharp } from "react-icons/tb";
 import './Skills.css';
 
 import { useLanguage } from '../context/useLanguage'; // El cerebro de traducción
+import { useReveal } from '../hooks/useReveal';
 
 function Skills() {
   // Extraemos las traducciones
   const { t, language } = useLanguage();
+  useReveal();
 
   // --- 1. LENGUAJES DE PROGRAMACIÓN ---
   const languages = [
@@ -68,7 +70,7 @@ function Skills() {
   return <div className="skills-page page-container">
     <header className="page-heading"><h1>{t.skills.title}</h1><p>{t.skills.subtitle}</p></header>
     <div className="skills-intro"><span aria-hidden="true">&lt;/&gt;</span><p>{language === 'es' ? 'De la interfaz a la lógica. Las herramientas detrás de mi trabajo.' : 'From interface to logic. The tools behind my work.'}</p></div>
-    {Object.entries(groups).map(([key, skills]) => <section className="skill-group" key={key} aria-labelledby={`group-${key}`}>
+    {Object.entries(groups).map(([key, skills]) => <section className="skill-group" data-reveal="" key={key} aria-labelledby={`group-${key}`}>
       <h2 id={`group-${key}`}>{t.skills.categories[key]}</h2>
       <ul className="skill-list">{skills.map(skill => <li key={skill.name}><span aria-hidden="true">{skill.icon}</span>{skill.name}</li>)}</ul>
     </section>)}

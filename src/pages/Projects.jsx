@@ -9,9 +9,11 @@ import {
 import { useLanguage } from '../context/useLanguage';
 
 import ProjectArt from '../components/ProjectArt';
+import { useReveal } from '../hooks/useReveal';
 
 const Projects = () => {
   const { t, language } = useLanguage();
+  useReveal();
 
   const projectList = [
     {
@@ -100,7 +102,7 @@ const Projects = () => {
   const labels = { 'Panel Web': 'Web dashboard', 'App Policial': 'Police app', 'Repositorio': 'Repository', 'Visitar Web': 'Visit website' };
   return <div className="projects-page page-container">
     <header className="page-heading"><h1>{t.projects.title}</h1><p>{t.projects.subtitle}</p></header>
-    <div className="project-gallery">{projectList.map((project, index) => <article className={`project-entry ${index === 0 ? 'featured-project' : ''}`} key={project.title}>
+    <div className="project-gallery">{projectList.map((project, index) => <article className={`project-entry ${index === 0 ? 'featured-project' : ''}`} key={project.title} {...(index > 0 && { 'data-reveal': '', style: { '--i': index % 3 } })}>
       <ProjectArt index={index} title={project.title} />
       <div className="project-details"><p className="project-type">{project.type}</p><h2>{project.title}</h2><p>{project.desc}</p>
         <p className="project-stack">{language === 'en' ? project.stack.replaceAll('Base de Datos', 'Database') : project.stack}</p>

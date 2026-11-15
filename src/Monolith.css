@@ -35,7 +35,7 @@ main:has(.ambient-layer[data-running='true']) .monolith-foreground .hero-artwork
 .monolith-name::before, .monolith-name::after { content: ''; position: absolute; top: 4%; width: 16px; height: 16px; border-top: 1px solid #ded7e9; }
 .monolith-name::before { left: 3%; border-left: 1px solid #ded7e9; }
 .monolith-name::after { right: 3%; border-right: 1px solid #ded7e9; }
-.monolith-fullname { position: absolute; top: 43%; left: var(--gutter); font-size: clamp(12px, 1.1vw, 18px); letter-spacing: .18em; padding-left: 26px; }
+.monolith-fullname { position: absolute; top: calc(9% + 20vw + 12px); left: var(--gutter); font-size: clamp(12px, 1.1vw, 18px); letter-spacing: .18em; padding-left: 26px; }
 .monolith-fullname::before { content: ''; position: absolute; left: 0; top: 2px; width: 2px; height: 26px; background: var(--magenta); transform: rotate(35deg); }
 .monolith-bottom { position: absolute; bottom: 9%; left: var(--gutter); right: var(--gutter); display: flex; justify-content: space-between; align-items: center; gap: 32px; }
 .monolith-role { max-width: 460px; padding: 16px 24px; border: 1px solid #a77fc077; background: #1b102b8c; backdrop-filter: blur(10px); }
@@ -98,18 +98,24 @@ main:has(.ambient-layer[data-running='true']) .monolith-foreground .hero-artwork
 @keyframes type-arrive { from { transform: translateY(20px); opacity: .6; } to { transform: translateY(0); opacity: 1; } }
 @keyframes monument-arrive { from { transform: translateY(20px) scaleY(1.25); opacity: .6; } to { transform: translateY(0) scaleY(1.25); opacity: 1; } }
 @keyframes page-arrive { from { transform: translateY(12px); opacity: .65; } to { transform: translateY(0); opacity: 1; } }
-@media (min-width: 1900px) { .monolith-hero { max-height: 1200px; } .name-main { font-size: min(19vw, 450px); } .name-family { font-size: min(8.6vw, 200px); } }
-@media (min-width: 1001px) and (max-height: 820px) {
+@media (min-width: 1900px) { .monolith-hero { max-height: 1200px; } .name-main { font-size: min(19vw, 450px); } .name-family { font-size: min(8.6vw, 200px); } .monolith-fullname { top: calc(9% + min(20vw, 474px) + 12px); } }
+/* The hero title is sized in vw, so the lines under it are placed relative to it, not to a fixed %. */
+@media (min-width: 901px) {
+  .name-family { top: 64%; }
+  .monolith-bottom { bottom: 6%; }
+}
+@media (min-width: 901px) and (max-height: 820px) {
   .name-family { top: 63%; }
   .monolith-bottom { bottom: 5%; }
   .monolith-caption { bottom: 1.5%; }
 }
-@media (max-width: 1000px) {
+@media (max-width: 900px) {
   .monolith-hero { height: 730px; min-height: 0; }
   .name-main { top: 12%; }
   .name-family { top: 65%; }
-  .monolith-fullname { top: 37%; font-size: 12px; }
-  .monolith-role { max-width: 360px; padding: 12px 16px; }
+  .monolith-fullname { top: calc(12% + 20vw + 12px); font-size: 12px; }
+  .monolith-role { max-width: 360px; min-width: 0; padding: 12px 16px; }
+  .monolith-bottom .hero-actions { flex-wrap: nowrap; flex-shrink: 0; }
   .monolith-hero .button { min-width: 125px; font-size: 13px; padding-inline: 14px; }
   .monolith-bottom { gap: 20px; }
   .project-gallery { gap: 56px 28px; }
@@ -129,7 +135,7 @@ main:has(.ambient-layer[data-running='true']) .monolith-foreground .hero-artwork
   .name-family { top: 58%; font-size: 8.5vw; left: 2%; right: 2%; }
   .monolith-scene .hero-artwork { object-position: center; }
   .monolith-shade { background: linear-gradient(180deg, #07060b22, transparent 35%, #07060b11 55%, #07060be0 90%); }
-  .monolith-fullname { top: 25%; font-size: 12px; letter-spacing: .04em; padding-left: 18px; }
+  .monolith-fullname { top: calc(12% + 20vw + 12px); font-size: 12px; letter-spacing: .04em; padding-left: 18px; }
   .monolith-fullname::before { height: 18px; }
   .monolith-bottom { bottom: 10%; flex-direction: column; align-items: stretch; gap: 18px; }
   .monolith-role { max-width: none; padding: 12px 16px; }

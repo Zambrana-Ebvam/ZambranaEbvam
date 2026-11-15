@@ -4,13 +4,16 @@ main:focus { outline: none; }
 .skip-link { position: fixed; top: 12px; left: 16px; transform: translateY(-160%); background: var(--text); color: var(--background); padding: 14px 20px; z-index: 100; }
 .skip-link:focus { transform: none; }
 
-.button { display: inline-flex; align-items: center; justify-content: center; gap: 24px; min-height: 52px; padding: 14px 22px; font-size: 14px; border-radius: 6px; transition: background .2s, color .2s, transform .2s; }
+.button { display: inline-flex; align-items: center; justify-content: center; gap: 24px; min-height: 52px; padding: 14px 22px; font-size: 14px; border-radius: 6px; transition: background .2s, color .2s, transform .16s var(--ease-out); }
 .button svg { width: 20px; height: 20px; }
 .button-primary { background: var(--text); color: var(--background); }
 .button-primary:hover { background: var(--accent-light); }
 @media (hover: hover) and (pointer: fine) { .button-primary:hover { transform: translateY(-2px); } }
 .button-secondary { border: 1px solid var(--border-strong); }
 .button-secondary:hover { background: var(--surface); }
+/* Press feedback: not hover-gated, touch needs it most. Placed after :hover so it wins the translate. */
+.button:active { transform: scale(.97); }
+.button-secondary:active { background: var(--surface); }
 .text-link { display: inline-flex; gap: 18px; align-items: center; min-height: 44px; font-size: 14px; }
 .text-link:hover { color: var(--accent-light); }
 
@@ -35,6 +38,14 @@ main:focus { outline: none; }
 .home-feature .text-link { margin-top: 28px; }
 .home-profile { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; padding: 72px 0 112px; border-top: 1px solid var(--border); }
 .home-profile p { color: var(--muted); margin-bottom: 26px; }
+
+/* Scroll reveal: one-shot, transform + opacity only. --i staggers siblings (50ms each). */
+[data-reveal] { transition: opacity .3s var(--ease-out), transform .3s var(--ease-out); transition-delay: calc(var(--i, 0) * 50ms); }
+[data-reveal]:not([data-visible]) { opacity: 0; transform: translateY(16px); }
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] { transition-delay: 0s; }
+  [data-reveal]:not([data-visible]) { transform: none; }
+}
 
 @media (max-width: 900px) {
   .hero-actions { gap: 10px; }

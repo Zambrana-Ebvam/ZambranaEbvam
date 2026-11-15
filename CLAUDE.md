@@ -15,5 +15,6 @@ Comandos: `npm run dev` · `npm run lint` · `npm run build`.
 - Nada de animación en acciones de teclado/alta frecuencia. Ambiente con pausa manual.
 
 ## Responsive y flujo
-- Breakpoints únicos: 600 / 900 / 1280. Probar 390, 768, 1366, 1920.
+- Breakpoints únicos: 600 / 900 (más 1900, solo para topar el titular del hero). Probar 320, 390, 768, 844×390, 1366×768, 1920.
+- El titular del hero está en vw: lo que va debajo se posiciona relativo a él (`calc(top + 20vw)`), no con % sueltos.
 - Rama `redesign/neo-cyber-2026`; no tocar `main`; no publicar sin pedirlo. Cambios por fases, verificando antes de seguir.

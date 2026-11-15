@@ -27,6 +27,7 @@
   --magenta:#e044a8;
   --border:#34303d;
   --border-strong:#67616f;
+  --ease-out:cubic-bezier(.23,1,.32,1);
   --page-width:1600px;
   --gutter:clamp(24px,4vw,80px)
 }
@@ -90,7 +91,7 @@ html {
     animation:none!important;
     scroll-behavior:auto!important
   }
-  .button,.project-art svg,.cover-content>div,.skill-list li>span {
+  .button,.menu-button,.motion-toggle,.cover-content>div,.skill-list li>span {
     transition-property:color,background-color,border-color,opacity!important;
     transform:none!important
   }
