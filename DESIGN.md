@@ -9,6 +9,7 @@ colors:
   accent: "#9458f5"
   accent-light: "#c6a2ff"
   border: "#34303d"
+  border-strong: "#67616f"
   magenta: "#e044a8"
 typography:
   display:
@@ -25,6 +26,8 @@ rounded:
   button: "6px"
   hero-button: "2px"
   artwork: "0px"
+  skill-item: "8px"
+  about-card: "14px"
 components:
   button-primary:
     backgroundColor: "{colors.text}"
@@ -41,10 +44,13 @@ components:
 ---
 
 ## Overview
-Dirección A aprobada: monolito cinematográfico original, titular monumental y composición editorial asimétrica. Negro, violeta y magenta contenido. Fuente final de overrides: `src/Monolith.css`, sobre `src/Cinematic.css` y los estilos base.
+Dirección A aprobada: monolito cinematográfico original, titular monumental y composición editorial asimétrica. Negro, violeta y magenta contenido. Los tokens (colores, `--gutter`, `--page-width`, `--border-strong`) viven en un único `:root` en `src/index.css`. Orden de estilos: `index.css` → `App.css` → `Cinematic.css` → `Monolith.css` (esta última es la capa final de overrides). No declarar tokens fuera de `index.css`.
 
 ## Colors
 Texto claro y secundarios muted; violeta para estados activos y foco, magenta para gestos puntuales. Los tonos translúcidos, portadas por proyecto y radios rectos de Monolith son decisiones intencionales de esta dirección.
+
+### Familias tonales intencionales (no son deriva)
+Valores literales fuera de la paleta base, por diseño: cada portada de proyecto (`.cover-0`…`.cover-7`) tiene su propio fondo y color de texto; las luces ambientales y partículas usan violetas/magentas translúcidos; el panel del rol y los botones del hero usan violetas con alfa. El detector los marca como avisos (advisory); no hace falta convertirlos a tokens salvo que se reutilicen en más de un componente. Excepción tipográfica: la portada Prediletta usa Georgia cursiva a propósito.
 
 ## Typography
 Syncopate Bold local para titulares y portadas; Space Grotesk local (alias Space) para cuerpo y controles. Predominan mayúsculas anchas en títulos, con párrafos de lectura normal. El hero usa escala tipográfica propia; en móvil baja a 18.5vw para el nombre y 8.5vw para el apellido.

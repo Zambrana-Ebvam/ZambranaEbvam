@@ -17,7 +17,14 @@ const translations = {
       btnPortfolio: "Ver Portafolio",
       btnAbout: "Sobre Mí",
       audioSync: "Sincronizar Audio PC",
-      audioStop: "Detener Efecto"
+      audioStop: "Detener Efecto",
+      btnTalk: "Hablemos",
+      conceptArt: "Arte conceptual original",
+      introLabel: "Presentación",
+      exploreWork: "Explorar mi trabajo",
+      workTitle: "Del código a lo real.",
+      allProjects: "Todos los proyectos",
+      profileTitle: "Más allá de la pantalla."
     },
     about: {
       title: "Sobre Mí",
@@ -155,7 +162,14 @@ const translations = {
       btnPortfolio: "View Portfolio",
       btnAbout: "About Me",
       audioSync: "Sync PC Audio",
-      audioStop: "Stop Effect"
+      audioStop: "Stop Effect",
+      btnTalk: "Let’s talk",
+      conceptArt: "Original concept art",
+      introLabel: "Introduction",
+      exploreWork: "Explore my work",
+      workTitle: "From code to real life.",
+      allProjects: "All projects",
+      profileTitle: "Beyond the screen."
     },
     about: {
       title: "About Me",
