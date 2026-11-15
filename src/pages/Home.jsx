@@ -1,15 +1,30 @@
+import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FiArrowUpRight, FiArrowDown } from 'react-icons/fi';
 import { FaGithub, FaLinkedin, FaWhatsapp } from 'react-icons/fa';
 import { useLanguage } from '../context/useLanguage';
 import ProjectArt from '../components/ProjectArt';
 import { useReveal } from '../hooks/useReveal';
+import { useHeroPointer } from '../hooks/useHeroPointer';
+
+// Hero title pieces. Delays (ms) shrink along the word so it reads as a wave, not a metronome.
+// Each letter also tumbles in from a slightly different angle (--r).
+const NAME_MAIN = [...'EBVAM'].map((char, i) => ({ char, delay: 450 + [0, 110, 200, 280, 350][i], tilt: [-7, 5, -4, 6, -5][i] }));
+const NAME_FAMILY = [{ word: 'ZAMBRANA', delay: 1150 }, { word: 'VIA', delay: 1300 }];
+
+// The intro plays once per page load; coming back to Home inside the SPA shows the hero at rest.
+let introPlayed = false;
 
 export default function Home() {
   const { t } = useLanguage();
+  const [intro] = useState(() => !introPlayed);
+  useEffect(() => { introPlayed = true; }, []);
+  const heroRef = useRef(null);
   useReveal();
+  useHeroPointer(heroRef);
   return <div className="home-page">
-    <section className="monolith-hero" aria-labelledby="hero-name">
+    <section ref={heroRef} className={`monolith-hero${intro ? ' intro' : ''}`} aria-labelledby="hero-name">
+      {intro && <div className="monolith-curtain" aria-hidden="true" />}
       <div className="monolith-scene" aria-hidden="true">
         <img className="hero-artwork" src="/media/monolith-1800.jpg" srcSet="/media/monolith-900.jpg 900w, /media/monolith-1800.jpg 1800w" sizes="100vw" width="1800" height="1125" alt="" fetchPriority="high" />
       </div>
@@ -19,8 +34,9 @@ export default function Home() {
           <image href="/media/monolith-1800.jpg" width="1586" height="992" preserveAspectRatio="none" clipPath="url(#monolith-apex)" />
         </svg>
       </div>
+      <div className="monolith-spot" aria-hidden="true" />
       <div className="monolith-shade" aria-hidden="true" />
-      <h1 id="hero-name" className="monolith-name" aria-label="Ebvam Brandon Zambrana Via"><span className="name-main">EBVAM</span><span className="name-family">ZAMBRANA VIA</span></h1>
+      <h1 id="hero-name" className="monolith-name" aria-label="Ebvam Brandon Zambrana Via"><span className="name-main" aria-hidden="true">{NAME_MAIN.map(({ char, delay, tilt }) => <span className="ch" key={char + delay}><span className="ch-in" style={{ '--d': `${delay}ms`, '--r': `${tilt}deg` }}>{char}</span></span>)}</span><span className="name-family" aria-hidden="true">{NAME_FAMILY.map(({ word, delay }, i) => <span key={word}>{i > 0 && ' '}<span className="wd"><span className="wd-in" style={{ '--d': `${delay}ms` }}>{word}</span></span></span>)}</span></h1>
       <p className="monolith-fullname">Ebvam Brandon Zambrana Via</p>
       <div className="monolith-bottom">
         <div className="monolith-role"><p>{t.home.role}</p></div>

@@ -10,9 +10,13 @@ Comandos: `npm run dev` · `npm run lint` · `npm run build`.
 - No inventar datos, métricas ni clientes. Conservar enlaces reales y ambos idiomas.
 
 ## Movimiento
-- Solo transform/opacity; ease-out `cubic-bezier(.23,1,.32,1)`; UI ≤300ms.
-- Hover bajo `(hover:hover) and (pointer:fine)`; respetar `prefers-reduced-motion` (opacidad sí, movimiento no).
-- Nada de animación en acciones de teclado/alta frecuencia. Ambiente con pausa manual.
+- Controles frecuentes (menú, botones, nav): solo transform/opacity, ≤300ms, `--ease-out` (`cubic-bezier(.23,1,.32,1)`).
+- Hero y escenas de scroll: movimiento expresivo permitido (clip-path, blend modes, resortes, >300ms), siempre con `prefers-reduced-motion`, 60fps y pausa.
+- Hover bajo `(hover:hover) and (pointer:fine)`. Con `prefers-reduced-motion`: sin desplazamiento; el hero conserva un único fundido de 300ms.
+- Nada de animación en acciones de teclado/alta frecuencia. La capa ambiente puede ser protagonista; mantiene botón de pausa y pausa fuera de pantalla.
+- Cristal y recorte del ápice se mueven siempre juntos (mismo transform sobre `.monolith-scene` y `.monolith-foreground`); si no, el recorte se desalinea.
+- Respuesta al cursor del hero: `src/hooks/useHeroPointer.js` (Motion). Escribe solo las propiedades independientes `translate`/`scale`, para no pisar las animaciones de `transform` del intro. Solo ratón/lápiz; en táctil, deriva lenta mientras la capa ambiente corre; nada bajo reduced-motion.
+- El intro del hero se reproduce una vez por carga de página (variable de módulo en `Home.jsx`), no al volver a Inicio dentro de la SPA.
 
 ## Responsive y flujo
 - Breakpoints únicos: 600 / 900 (más 1900, solo para topar el titular del hero). Probar 320, 390, 768, 844×390, 1366×768, 1920.

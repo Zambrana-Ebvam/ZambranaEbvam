@@ -70,5 +70,5 @@ Hero `monolith-hero`, nombre/apellido en HTML, pieza visual original y controles
 ## Do's and Don'ts
 - Do conservar datos reales, ES/EN y enlaces existentes.
 - Do mantener contraste, foco visible y movimiento reducido.
-- Don't añadir neón abundante, lluvia de código o permisos para decoración.
+- Ambiente luminoso permitido y puede ser protagonista (luces, destellos, polvo), siempre con botón de pausa, pausa fuera de pantalla y `prefers-reduced-motion`. Sigue sin haber neón saturado de bordes, lluvia de código ni permisos de dispositivo para decoración.
 - Don't presentar arte conceptual o portadas provisionales como capturas auténticas.
