@@ -1,0 +1,66 @@
+.app-wrapper { min-height: 100vh; }
+main { min-height: 60vh; }
+main:focus { outline: none; }
+.skip-link { position: fixed; top: 12px; left: 16px; transform: translateY(-160%); background: var(--text); color: var(--background); padding: 14px 20px; z-index: 100; }
+.skip-link:focus { transform: none; }
+
+.button { display: inline-flex; align-items: center; justify-content: center; gap: 24px; min-height: 52px; padding: 14px 22px; font-size: 14px; border-radius: 6px; transition: background .2s, color .2s, transform .16s var(--ease-out); }
+.button svg { width: 20px; height: 20px; }
+.button-primary { background: var(--text); color: var(--background); }
+.button-primary:hover { background: var(--accent-light); }
+@media (hover: hover) and (pointer: fine) { .button-primary:hover { transform: translateY(-2px); } }
+.button-secondary { border: 1px solid var(--border-strong); }
+.button-secondary:hover { background: var(--surface); }
+/* Press feedback: not hover-gated, touch needs it most. Placed after :hover so it wins the translate. */
+.button:active { transform: scale(.97); }
+.button-secondary:active { background: var(--surface); }
+.text-link { display: inline-flex; gap: 18px; align-items: center; min-height: 44px; font-size: 14px; }
+.text-link:hover { color: var(--accent-light); }
+
+.page-container { padding: 88px 0 104px; }
+.page-heading { margin-bottom: 72px; max-width: 850px; }
+.page-heading h1 { font-size: clamp(42px, 5.8vw, 80px); line-height: 1.05; letter-spacing: -.04em; margin-bottom: 24px; }
+.page-heading p { color: var(--muted); max-width: 620px; font-size: 18px; }
+
+.hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+.social-links { display: flex; gap: 24px; margin: 30px 0; flex-wrap: wrap; }
+.social-links a { display: inline-flex; gap: 8px; align-items: center; color: var(--muted); font-size: 12px; min-height: 44px; }
+.social-links a:hover { color: var(--text); }
+.availability { display: flex; align-items: center; gap: 10px; }
+.availability span { width: 6px; height: 6px; background: var(--accent-light); border-radius: 50%; }
+
+.home-work { padding: 104px 0; }
+.section-heading { display: flex; justify-content: space-between; align-items: end; gap: 32px; margin-bottom: 36px; }
+.section-heading h2, .home-profile h2 { font-size: clamp(30px, 3.6vw, 48px); line-height: 1.12; letter-spacing: -.03em; }
+.home-feature { display: grid; grid-template-columns: 1.25fr 1fr; gap: 52px; align-items: center; }
+.home-feature h3 { font-size: 30px; line-height: 1.2; margin: 16px 0 20px; letter-spacing: -.03em; }
+.home-feature p { font-size: 14px; color: var(--muted); }
+.home-feature .text-link { margin-top: 28px; }
+.home-profile { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; padding: 72px 0 112px; border-top: 1px solid var(--border); }
+.home-profile p { color: var(--muted); margin-bottom: 26px; }
+
+/* Scroll reveal: one-shot, transform + opacity only. --i staggers siblings (50ms each). */
+[data-reveal] { transition: opacity .3s var(--ease-out), transform .3s var(--ease-out); transition-delay: calc(var(--i, 0) * 50ms); }
+[data-reveal]:not([data-visible]) { opacity: 0; transform: translateY(16px); }
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] { transition-delay: 0s; }
+  [data-reveal]:not([data-visible]) { transform: none; }
+}
+
+@media (max-width: 900px) {
+  .hero-actions { gap: 10px; }
+  .button { gap: 16px; padding-inline: 18px; }
+  .home-feature { gap: 28px; }
+  .home-profile { gap: 40px; }
+}
+@media (max-width: 600px) {
+  .page-container { padding: 48px 0 64px; }
+  .page-heading { margin-bottom: 42px; }
+  .page-heading h1 { font-size: 44px; }
+  .page-heading p { font-size: 16px; }
+  .home-work { padding: 64px 0; }
+  .section-heading { align-items: start; flex-direction: column; gap: 14px; }
+  .home-feature, .home-profile { grid-template-columns: 1fr; gap: 28px; }
+  .home-feature h3 { font-size: 26px; }
+  .home-profile { padding: 48px 0 64px; }
+}
